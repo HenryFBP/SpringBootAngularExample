@@ -1,28 +1,25 @@
-package net.henrypost.server.model;
+package net.henrypost.server.model.jpa;
 
 import lombok.*;
 import net.henrypost.server.enumeration.ServerStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class Server {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
-    String ip;
+    Long id;
+    @Column(unique = true)
+    @NotEmpty(message = "IP Address cannot be empty")
+    String ipAddress;
     String name;
     String memory;
     String type;
     String imageURL;
     ServerStatus serverStatus;
-
 }
