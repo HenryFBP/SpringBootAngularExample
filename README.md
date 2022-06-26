@@ -13,13 +13,12 @@ taken from amigoscode with <3
 
     docker-compose up -d
 
-    # optional below
+    # create db
+    docker-compose exec postgres createdb --username=amigoscode serverdb
+
+    # optional commands below
     docker-compose ps
     docker-compose logs -f
-
-    # create db
-    docker-compose run postgres createdb -U amigoscode serverdb
-
 
 Then visit <http://localhost:5050/> to view PGAdmin.
 

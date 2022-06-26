@@ -1,7 +1,7 @@
 spring:
   datasource:
-    password: amigoscode
-    username: password
+    username: amigoscode
+    password: password
     url: jdbc:postgresql://localhost:5432/serverdb
   jpa:
     hibernate:

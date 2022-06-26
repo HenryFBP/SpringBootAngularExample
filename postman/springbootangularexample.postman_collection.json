@@ -1,0 +1,22 @@
+{
+	"variables": [],
+	"info": {
+		"name": "springbootangularexample",
+		"_postman_id": "ef1abcd4-6afd-84ef-f180-8b97170fe0bd",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list servers",
+			"request": {
+				"url": "{{url}}/server/list",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
