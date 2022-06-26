@@ -1,3 +1,5 @@
 # Spring Boot Angular Example
 
-x
+taken from amigoscode with <3
+
+<https://www.youtube.com/watch?v=8ZPsZBcue50>
