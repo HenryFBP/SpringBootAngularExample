@@ -16,14 +16,18 @@ public class ServerApplication {
     }
 
     @Bean
-    CommandLineRunner run(ServerRepo serverRepo) {
+    CommandLineRunner populateServerRepoWithDummyData(ServerRepo serverRepo) {
         return args -> {
 
+            //stop if we have servers
             if (!serverRepo.findAll().isEmpty()) {
                 return;
             }
 
-            serverRepo.save(new Server(null, "192.168.1.116", "Ubuntu Linux", "16 GB", "PC", "http://localhost:8080/server/image/server1.png", ServerStatus.SERVER_UP));
+            serverRepo.saveAndFlush(new Server(null, "192.168.1.116", "Ubuntu Linux", "16 GB", "PC", "http://localhost:8080/server/image/server1.png", ServerStatus.SERVER_UP));
+            serverRepo.saveAndFlush(new Server(null, "192.168.1.117", "Debian Linux", "16 GB", "Server", "http://localhost:8080/server/image/server2.png", ServerStatus.SERVER_DOWN));
+            serverRepo.saveAndFlush(new Server(null, "192.168.1.118", "Windows", "64 GB", "Gaming PC", "http://localhost:8080/server/image/server4.png", ServerStatus.SERVER_UP));
+            serverRepo.saveAndFlush(new Server(null, "192.168.1.1", "SPARC", "256 GB", "IDK lol", "http://localhost:8080/server/image/server3.png", ServerStatus.SERVER_DOWN));
         };
     }
 

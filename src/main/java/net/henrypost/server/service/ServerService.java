@@ -27,7 +27,7 @@ public class ServerService implements IServerService {
     public Server create(Server server) {
         log.info("Saving server: {}", (server.getName()));
         server.setImageURL(setServerImageURL());
-        return this.serverRepo.save(server);
+        return this.serverRepo.saveAndFlush(server);
     }
 
     private String setServerImageURL() {
@@ -52,7 +52,7 @@ public class ServerService implements IServerService {
         }
 
         //save to db, return
-        return this.serverRepo.save(server);
+        return this.serverRepo.saveAndFlush(server);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ServerService implements IServerService {
     @Override
     public Server update(Server server) {
         log.info("update server {}", server.getName());
-        return this.serverRepo.save(server);
+        return this.serverRepo.saveAndFlush(server);
     }
 
     @Override
@@ -81,5 +81,13 @@ public class ServerService implements IServerService {
         log.info("delete server {}", id);
         this.serverRepo.deleteById(id);
         return true;
+    }
+
+    public boolean isIPTaken(String ipAddress) {
+        return this.serverRepo.findByIpAddress(ipAddress) != null;
+    }
+
+    public boolean doesIPExist(String ipAddress){
+        return this.isIPTaken(ipAddress);
     }
 }

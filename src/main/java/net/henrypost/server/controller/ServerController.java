@@ -15,8 +15,7 @@ import java.nio.file.Paths;
 import static java.time.LocalDateTime.now;
 import static java.util.Map.of;
 import static net.henrypost.server.enumeration.ServerStatus.SERVER_UP;
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 
 @RestController
@@ -45,8 +44,22 @@ public class ServerController {
     @GetMapping("/ping/{ipAddress}")
     public ResponseEntity<GenericRESTResponse> pingServer(@PathVariable("ipAddress") String ipAddress) throws IOException {
 
-        Server server = serverService.ping(ipAddress);
+        //make sure ip exists
+        if (!this.serverService.doesIPExist(ipAddress)) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(
+                            GenericRESTResponse
+                                    .builder()
+                                    .timestamp(now())
+                                    .userMessage("ip %s does not exist".formatted(ipAddress))
+                                    .httpStatus(BAD_REQUEST)
+                                    .statusCode(BAD_REQUEST.value())
+                                    .build()
+                    );
+        }
 
+        Server server = serverService.ping(ipAddress);
 
         return ResponseEntity
                 .ok(
@@ -65,6 +78,21 @@ public class ServerController {
 
     @PostMapping("/save")
     public ResponseEntity<GenericRESTResponse> saveServer(@RequestBody @Valid Server server) {
+
+        //check if the IP is taken
+        if (serverService.isIPTaken(server.getIpAddress())) {
+            return ResponseEntity
+                    .unprocessableEntity()
+                    .body(
+                            GenericRESTResponse
+                                    .builder()
+                                    .timestamp(now())
+                                    .userMessage("conflicting ip %s".formatted(server.getIpAddress()))
+                                    .httpStatus(UNPROCESSABLE_ENTITY)
+                                    .statusCode(UNPROCESSABLE_ENTITY.value())
+                                    .build()
+                    );
+        }
 
         this.serverService.create(server);
 
@@ -120,7 +148,8 @@ public class ServerController {
                 );
     }
 
-    @GetMapping(path = "/image/{name}", produces = IMAGE_PNG_VALUE) //TODO wow this is terrible. frontend should handle this.
+    @GetMapping(path = "/image/{name}", produces = IMAGE_PNG_VALUE)
+    //TODO wow this is terrible. frontend should handle this.
     public byte[] getServerImage(@PathVariable String name) throws IOException {
         return Files.readAllBytes(Paths.get("%s/Downloads/images/%s".formatted(System.getProperty("user.home"), name)));//TODO path manipulation vuln? fixme
     }

@@ -17,6 +17,57 @@
 				"description": ""
 			},
 			"response": []
+		},
+		{
+			"name": "get server",
+			"request": {
+				"url": "{{url}}/server/get/2",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "save server",
+			"request": {
+				"url": "{{url}}/server/save",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ipAddress\": \"192.168.1.195\",\n\t\"name\": \"Arch Linux\",\n\t\"memory\": \"32 GB\",\n\t\"type\": \"Lenovo Server\",\n\t\"serverStatus\": \"SERVER_DOWN\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ping server",
+			"request": {
+				"url": "{{url}}/server/ping/192.168.1.1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ipAddress\": \"192.168.1.195\",\n\t\"name\": \"Arch Linux\",\n\t\"memory\": \"32 GB\",\n\t\"type\": \"Lenovo Server\",\n\t\"serverStatus\": \"SERVER_DOWN\"\n}\n"
+				},
+				"description": ""
+			},
+			"response": []
 		}
 	]
 }
