@@ -1,9 +1,11 @@
+import { Server } from "./server";
+
 export interface CustomResponse {
   timeStamp: Date;
   statusCode: number;
-  status: String;
-  reason: String;
-  message: String;
-  developerMessage: String;
+  status: string;
+  reason: string;
+  message: string;
+  developerMessage: string;
   data: { servers?: Server[]; server?: Server };
 }
