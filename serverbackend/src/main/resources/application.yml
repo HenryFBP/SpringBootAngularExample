@@ -2,7 +2,7 @@ spring:
   datasource:
     username: amigoscode
     password: password
-    url: jdbc:postgresql://localhost:5432/serverdb
+    url: 'jdbc:postgresql://localhost:5432/serverdb'
   jpa:
     hibernate:
       ddl-auto: create

@@ -7,6 +7,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 public class ServerApplication {
@@ -29,6 +34,22 @@ public class ServerApplication {
             serverRepo.saveAndFlush(new Server(null, "192.168.1.118", "Windows", "64 GB", "Gaming PC", "http://localhost:8080/server/image/server4.png", ServerStatus.SERVER_UP));
             serverRepo.saveAndFlush(new Server(null, "192.168.1.1", "SPARC", "256 GB", "IDK lol", "http://localhost:8080/server/image/server3.png", ServerStatus.SERVER_DOWN));
         };
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:4200"));
+        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type", "Accept", "Jwt-Token", "Authorization", "Origin, Accept", "X-Requested-With", "Access-Control-Request-Method", "Access-Control-Request-Headers"));
+        corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type", "Accept", "Jwt-Token", "Authorization", "Origin, Accept", "X-Requested-With", "Access-Control-Request-Method", "Filename", "Access-Control-Request-Headers"));
+        corsConfiguration.setAllowedHeaders(Arrays.asList("GET POST PUT PATCH DELETE OPTIONS".split(" ")));
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("/**",corsConfiguration);
+        //TODO allowlist the headers and methods? might be necessary.
+
+        return new CorsFilter(urlBasedCorsConfigurationSource);
     }
 
 }
