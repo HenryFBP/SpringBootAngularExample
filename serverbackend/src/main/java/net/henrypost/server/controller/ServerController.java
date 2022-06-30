@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.concurrent.TimeUnit;
 
 import static java.time.LocalDateTime.now;
 import static java.util.Map.of;
@@ -25,7 +26,11 @@ public class ServerController {
     private final ServerService serverService;
 
     @GetMapping("/list")
-    public ResponseEntity<GenericRESTResponse> getServers() {
+    public ResponseEntity<GenericRESTResponse> getServers() throws InterruptedException {
+
+        //simulated delay
+        TimeUnit.SECONDS.sleep(3);
+
         return ResponseEntity
                 .ok(
                         GenericRESTResponse
