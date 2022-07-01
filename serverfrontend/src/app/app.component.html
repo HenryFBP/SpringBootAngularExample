@@ -42,17 +42,67 @@
                   <tr>
                     <th>Image</th>
                     <th>IP Address</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>Name</th>
+                    <th>Memory</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Ping</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
-                
+                <tbody>
+                  <tr>
+                    <td><img /></td>
+                    <td>ipAddress</td>
+                    <td>name</td>
+                    <td>memory</td>
+                    <td>type</td>
+                    <td>
+                      <span class="badge"></span>
+                    </td>
+                    <td>
+                      <a style="cursor: pointer">
+                        <i class="material-icons" title="Ping server"
+                          >&#xe328;</i
+                        ><i
+                          class="fa fa-spinner fa-spin"
+                          style="font-size: 24px"
+                        ></i
+                      ></a>
+                    </td>
+                    <td>
+                      <a
+                        class="delete"
+                        data-toggle="modal"
+                        style="cursor: pointer"
+                        ><i
+                          class="material-icons"
+                          data-toggle="idk lol"
+                          title="Delete"
+                        ></i
+                      ></a>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
+            </ng-container>
+            <ng-container>
+              <div class="alert-danger">error</div>
             </ng-container>
           </ng-container>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- add server modal html-->
+<div id="addEmployeeModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form>
+        
+      </form>
     </div>
   </div>
 </div>
