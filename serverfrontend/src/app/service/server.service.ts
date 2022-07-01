@@ -73,11 +73,7 @@ export class ServerService {
       });
 
       subscriber.complete();
-    })
-    .pipe(
-      tap(console.log),
-      catchError(this.handleError)
-    );
+    }).pipe(tap(console.log), catchError(this.handleError));
 
   delete$ = (serverId: number) =>
     <Observable<CustomResponse>>(
