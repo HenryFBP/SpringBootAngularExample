@@ -1,5 +1,6 @@
 package net.henrypost.server;
 
+import lombok.extern.slf4j.Slf4j;
 import net.henrypost.server.enumeration.ServerStatus;
 import net.henrypost.server.model.jpa.Server;
 import net.henrypost.server.repo.ServerRepo;
@@ -14,6 +15,7 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 
 @SpringBootApplication
+@Slf4j
 public class ServerApplication {
 
     public static void main(String[] args) {
@@ -26,6 +28,7 @@ public class ServerApplication {
 
             //stop if we have servers
             if (!serverRepo.findAll().isEmpty()) {
+                ServerApplication.log.info("Skipping db dummy data insertion.");
                 return;
             }
 
