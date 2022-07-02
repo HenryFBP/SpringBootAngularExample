@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { catchError, map, Observable, of, startWith } from 'rxjs';
-import { DataState } from './enum/data-state.enum';
-import { AppState } from './interface/app-state';
-import { CustomResponse } from './interface/custom-response';
-import { ServerService } from './service/server.service';
+import {Component, OnInit} from '@angular/core';
+import {BehaviorSubject, catchError, map, Observable, of, startWith} from 'rxjs';
+import {DataState} from './enum/data-state.enum';
+import {Status} from './enum/status.enum';
+import {AppState} from './interface/app-state';
+import {CustomResponse} from './interface/custom-response';
+import {ServerService} from './service/server.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,12 @@ import { ServerService } from './service/server.service';
 export class AppComponent implements OnInit {
   appState$: Observable<AppState<CustomResponse>>;
   readonly DataState = DataState;
+  readonly Status = Status;
+  private filterSubject = new BehaviorSubject<string>("")
 
-  constructor(private serverService: ServerService) {}
+  constructor(private serverService: ServerService) {
+  }
+
   ngOnInit(): void {
     this.appState$ = this.serverService.servers$.pipe(
       map((response) => {
@@ -25,10 +30,9 @@ export class AppComponent implements OnInit {
       }),
       startWith({
         dataState: DataState.LOADING_STATE,
-        appData: null,
       }),
       catchError((error: string) => {
-        return of({ dataState: DataState.ERROR_STATE, error });
+        return of({dataState: DataState.ERROR_STATE, error});
       })
     );
   }

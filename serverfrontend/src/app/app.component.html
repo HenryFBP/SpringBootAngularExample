@@ -64,7 +64,10 @@
               <td>{{server.memory}}</td>
               <td>{{server.type}}</td>
               <td>
-                <span class="badge"></span>
+                <span [ngClass]="[server.status === Status.SERVER_UP ? 'badge-success' : 'badge-danger']"
+                      class="badge">
+                  {{(server.status + "").replace("_", " ")}}
+                </span>
               </td>
               <td>
                 <a style="cursor: pointer">

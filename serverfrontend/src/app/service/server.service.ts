@@ -1,30 +1,30 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
-import { Status } from '../enum/status.enum';
-import { CustomResponse } from '../interface/custom-response';
-import { Server } from '../interface/server';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable, throwError} from 'rxjs';
+import {catchError, tap} from 'rxjs/operators';
+import {Status} from '../enum/status.enum';
+import {CustomResponse} from '../interface/custom-response';
+import {Server} from '../interface/server';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServerService {
   private readonly apiURL = 'http://localhost:8080';
-
-  constructor(private httpc: HttpClient) {}
-
-  //procedural approach
-  getServersProcedural(): Observable<CustomResponse> {
-    return this.httpc.get<CustomResponse>(`${this.apiURL}/server/list`);
-  }
-
   //reactive approach
   servers$ = <Observable<CustomResponse>>(
     this.httpc
       .get<CustomResponse>(`${this.apiURL}/server/list`)
       .pipe(tap(console.log), catchError(this.handleError))
   );
+
+  constructor(private httpc: HttpClient) {
+  }
+
+  //procedural approach
+  getServersProcedural(): Observable<CustomResponse> {
+    return this.httpc.get<CustomResponse>(`${this.apiURL}/server/list`);
+  }
 
   save$ = (server: Server) =>
     <Observable<CustomResponse>>(
