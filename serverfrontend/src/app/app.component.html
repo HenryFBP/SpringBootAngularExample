@@ -11,19 +11,19 @@
             <h2>Manage Servers</h2>
           </div>
           <div class="col-sm-6">
-            <button type="button" class="btn btn-primary">Print Report</button>
+            <button class="btn btn-primary" type="button">Print Report</button>
 
             <a
-              href="#addEmployeeModal"
               class="btn btn-success"
               data-toggle="modal"
+              href="#addEmployeeModal"
             >
               <i class="material-icons">&#xE147;</i>
               <span>New Server</span>
             </a>
 
             <span>
-              <select name="status" class="btn btn-info" style="height: 33px">
+              <select class="btn btn-info" name="status" style="height: 33px">
                 <option value="ALL">ALL</option>
                 <option value="SERVER_UP">SERVER_UP</option>
                 <option value="SERVER_DOWN">SERVER_DOWN</option>
@@ -58,7 +58,7 @@
             </thead>
             <tbody *ngFor="let server of appState.appData.data.servers; let i = index; ">
             <tr>
-              <td><img src="{{server.imageURL}}"/></td>
+              <td><img [alt]="server.name" [src]="server.imageURL" height="40" width="40"/></td>
               <td>{{server.ipAddress}}</td>
               <td>{{server.name}}</td>
               <td>{{server.memory}}</td>
@@ -79,9 +79,9 @@
                 <a class="delete" data-toggle="modal" style="cursor: pointer"
                 ><i
                   class="material-icons"
-                  data-toggle="idk lol he doesnt FUCKING INCLUDE THE CODE REEEEEEEEEEEEEEEEEE"
+                  data-toggle="modal"
                   title="Delete"
-                ></i
+                >delete</i
                 ></a>
               </td>
             </tr>
@@ -97,17 +97,17 @@
 </div>
 
 <!-- add server modal html-->
-<div id="addEmployeeModal" class="modal fade">
+<div class="modal fade" id="addEmployeeModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <form>
         <div class="modal-header">
           <h4 class="modal-title">Add Server</h4>
           <button
-            type="button"
+            aria-hidden="true"
             class="close"
             data-dismiss="modal"
-            aria-hidden="true"
+            type="button"
           >
             &times;
           </button>
@@ -115,34 +115,34 @@
         <div class="modal-group">
           <div class="form-group">
             <label>IP</label>
-            <input type="text" name="ipAddress" class="form-control" required/>
+            <input class="form-control" name="ipAddress" required type="text"/>
           </div>
           <div class="form-group">
             <label>Name</label>
-            <input type="text" name="name" class="form-control" required/>
+            <input class="form-control" name="name" required type="text"/>
           </div>
           <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
               <div class="form-group">
                 <label>Memory</label>
                 <input
-                  type="text"
-                  name="memory"
                   class="form-control"
+                  name="memory"
                   required
+                  type="text"
                 />
               </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
               <div class="form-group">
                 <label>Type</label>
-                <input type="text" name="type" class="form-control" required/>
+                <input class="form-control" name="type" required type="text"/>
               </div>
             </div>
           </div>
           <div class="form-group">
             <label>Name</label>
-            <input type="text" name="name" class="form-control" required/>
+            <input class="form-control" name="name" required type="text"/>
           </div>
         </div>
       </form>
