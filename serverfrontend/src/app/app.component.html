@@ -1,6 +1,6 @@
-<div>
-  {{ appState$ | async | json }}
-</div>
+<!--<div>-->
+<!--  {{ appState$ | async | json }}-->
+<!--</div>-->
 
 <div class="container-xl">
   <div class="table-responsive">
@@ -31,7 +31,7 @@
             </span>
           </div>
         </div>
-        <br />
+        <br/>
       </div>
       <ng-container
         *ngIf="appState$ | async as appState"
@@ -45,46 +45,46 @@
         <ng-container *ngSwitchCase="DataState.LOADED_STATE">
           <table class="table table-striped table-hover" id="servers">
             <thead>
-              <tr>
-                <th>Image</th>
-                <th>IP Address</th>
-                <th>Name</th>
-                <th>Memory</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Ping</th>
-                <th>Actions</th>
-              </tr>
+            <tr>
+              <th>Image</th>
+              <th>IP Address</th>
+              <th>Name</th>
+              <th>Memory</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Ping</th>
+              <th>Actions</th>
+            </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td><img /></td>
-                <td>ipAddress</td>
-                <td>name</td>
-                <td>memory</td>
-                <td>type</td>
-                <td>
-                  <span class="badge"></span>
-                </td>
-                <td>
-                  <a style="cursor: pointer">
-                    <i class="material-icons" title="Ping server">&#xe328;</i
-                    ><i
-                      class="fa fa-spinner fa-spin"
-                      style="font-size: 24px"
-                    ></i
-                  ></a>
-                </td>
-                <td>
-                  <a class="delete" data-toggle="modal" style="cursor: pointer"
-                    ><i
-                      class="material-icons"
-                      data-toggle="idk lol"
-                      title="Delete"
-                    ></i
-                  ></a>
-                </td>
-              </tr>
+            <tbody *ngFor="let server of appState.appData.data.servers; let i = index; ">
+            <tr>
+              <td><img src="{{server.imageURL}}"/></td>
+              <td>{{server.ipAddress}}</td>
+              <td>{{server.name}}</td>
+              <td>{{server.memory}}</td>
+              <td>{{server.type}}</td>
+              <td>
+                <span class="badge"></span>
+              </td>
+              <td>
+                <a style="cursor: pointer">
+                  <i class="material-icons" title="Ping server">&#xe328;</i
+                  ><i
+                  class="fa fa-spinner fa-spin"
+                  style="font-size: 24px"
+                ></i
+                ></a>
+              </td>
+              <td>
+                <a class="delete" data-toggle="modal" style="cursor: pointer"
+                ><i
+                  class="material-icons"
+                  data-toggle="idk lol he doesnt FUCKING INCLUDE THE CODE REEEEEEEEEEEEEEEEEE"
+                  title="Delete"
+                ></i
+                ></a>
+              </td>
+            </tr>
             </tbody>
           </table>
         </ng-container>
@@ -115,11 +115,11 @@
         <div class="modal-group">
           <div class="form-group">
             <label>IP</label>
-            <input type="text" name="ipAddress" class="form-control" required />
+            <input type="text" name="ipAddress" class="form-control" required/>
           </div>
           <div class="form-group">
             <label>Name</label>
-            <input type="text" name="name" class="form-control" required />
+            <input type="text" name="name" class="form-control" required/>
           </div>
           <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
@@ -136,13 +136,13 @@
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
               <div class="form-group">
                 <label>Type</label>
-                <input type="text" name="type" class="form-control" required />
+                <input type="text" name="type" class="form-control" required/>
               </div>
             </div>
           </div>
           <div class="form-group">
             <label>Name</label>
-            <input type="text" name="name" class="form-control" required />
+            <input type="text" name="name" class="form-control" required/>
           </div>
         </div>
       </form>
