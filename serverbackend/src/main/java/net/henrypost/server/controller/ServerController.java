@@ -28,6 +28,11 @@ public class ServerController {
     @GetMapping("/list")
     public ResponseEntity<GenericRESTResponse> getServers() throws InterruptedException {
 
+        //sample failure
+//        if (!this.getClass().getSimpleName().isEmpty()) {
+//            throw new RuntimeException("wowowowowowowowow poopy");
+//        }
+
         //simulated delay
         TimeUnit.SECONDS.sleep(3);
 

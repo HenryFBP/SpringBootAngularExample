@@ -35,7 +35,7 @@ public class ServerService implements IServerService {
 
         String name = imgnames[new Random().nextInt(imgnames.length)];
 
-        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/server/image/%s".formatted(name)).toUriString();
+        return ServletUriComponentsBuilder.fromCurrentContextPath().path("/images/%s".formatted(name)).toUriString();
     }
 
     @Override

@@ -33,6 +33,7 @@ public class ServerApplication {
             serverRepo.saveAndFlush(new Server(null, "192.168.1.117", "Debian Linux", "16 GB", "Server", "http://localhost:8080/images/server2.png", ServerStatus.SERVER_DOWN));
             serverRepo.saveAndFlush(new Server(null, "192.168.1.118", "Windows", "64 GB", "Gaming PC", "http://localhost:8080/images/server3.png", ServerStatus.SERVER_UP));
             serverRepo.saveAndFlush(new Server(null, "192.168.1.1", "SPARC", "256 GB", "IDK lol", "http://localhost:8080/images/server4.png", ServerStatus.SERVER_DOWN));
+            serverRepo.saveAndFlush(new Server(null, "127.0.0.1", "localhost", "256 GB", "its your pc bro", "http://localhost:8080/images/server1.png", ServerStatus.SERVER_DOWN));
         };
     }
 
