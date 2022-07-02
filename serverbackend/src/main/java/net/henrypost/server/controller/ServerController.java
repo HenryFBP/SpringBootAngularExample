@@ -153,10 +153,4 @@ public class ServerController {
                 );
     }
 
-    @GetMapping(path = "/image/{name}", produces = IMAGE_PNG_VALUE)
-    //TODO wow this is terrible. frontend should handle this.
-    public byte[] getServerImage(@PathVariable String name) throws IOException {
-        return Files.readAllBytes(Paths.get("%s/Downloads/images/%s".formatted(System.getProperty("user.home"), name)));//TODO path manipulation vuln? fixme
-    }
-
 }
