@@ -11,3 +11,7 @@ use the IntelliJ WebStorm Elm plugin :)
     elm reactor
 
 visit <http://localhost:8000/>
+
+## notes
+
+https://elmprogramming.com/
